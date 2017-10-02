@@ -1,6 +1,5 @@
 sudo service postgresql start
 
-
 sudo sudo -u postgres psql
 
 sudo sudo -u postgres createdb -U postgres -w library
