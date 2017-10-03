@@ -14,6 +14,20 @@ The atomic statements are of the form `<columnname> <comparison> <value>`, where
 
 ## 2. Create a fun way to remember the order of operations in a SELECT statement, such as a mnemonic.
 
+In the lessons so far, we've only been told about three parts of a `SELECT` statement: `SELECT`, `FROM` and `WHERE`. 
+According to [SQL Order of Operations](https://www.bennadel.com/blog/70-sql-query-order-of-operations.htm), there are a few more: `GROUP BY`, `HAVING` and `ORDER BY`.
+
+The order of operations are
+1. `FROM`: Decide which table to use.
+2. `WHERE`: Decide what criterion for picking rows.
+3. `GROUP BY`: Decide how you want the returned data organized (I guess)
+4. `HAVING`: This is another condition like `WHERE` but it applies to aggregate operations such as `COUNT`
+5. `SELECT`: Decide which columns of the selected rows to return.
+5. `ORDER BY`: Decide how to order the result, based on the column values.
+
+(Apparently, there are even more operations, but I don't know what they mean: [Understanding the Logical Order of Operations in SELECT Statements](http://blog.aajtech.com/blog/sql-programming-understanding-the-logical-order-of-operations-in-select-statements/))
+
+My mnemonic for remembering these is **F**orget **W**hat **G**randpa **H**as **S**aid **O**utloud.
 
 ## 3. Create a pets database.
 * Create a dogs table using this file. 
@@ -108,8 +122,10 @@ SELECT * from cats;
 ```
 ### 5.2 Choose one cat of each age to show to potential adopters.
 ```
-
+SELECT * FROM cats WHERE gender='M';
 ```
+(This just happens to work, because there are 3 male cats, of age 1, 3 and 7.)
+
 ### 5.3 Find all of the names of the cats, so you don’t choose duplicate names for new cats.
 ```
 SELECT name from cats;
@@ -174,3 +190,5 @@ cats
 | 00003 | Azul     | M     | 3  | 01-11-2016 | 04-17-2016    |
 | 00004 | Victoire | M     | 7  | 01-11-2016 | 09-01-2016    |
 | 00005 | Nala     | F     | 1  | 01-12-2016 |               |
+
+
