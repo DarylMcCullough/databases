@@ -165,11 +165,14 @@ UPDATE spacecrafts SET in_operation=FALSE WHERE name='venus probe';
 ```
 
 ### 7. Write a command to make a new table to hold the emails in your inbox. This table should include an id, the subject line, the sender, any additional recipients, the body of the email, the timestamp, whether or not it’s been read, and the id of the email chain it’s in.
+(Note: I'm also going to include a `primary_recipient` field, so that the same table can be used for mail to and from a number of users.)
+
 ```
 CREATE TABLE emails (
     id INT,
     subject VARCHAR(300),
     sender VARCHAR(100),
+    primary_recipient VARCHAR(100),
     cc VARCHAR(300),
     body TEXT,
     received TIMESTAMP,
@@ -180,11 +183,11 @@ CREATE TABLE emails (
 
 #### 7.1 Add 3 new emails to the inbox.
 ```
-INSERT INTO emails (id, subject, sender, cc, body, received, read, chain_id)
+INSERT INTO emails (id, subject, sender, primary_recipient, cc, body, received, read, chain_id)
 VALUES
-(1, 'book club meeting', 'there will be a meeting this Friday at 6 pm, at the Barnes and Nobles cafe', 'tom@acme.com, harry@google.com, sally@espn.com', TIMESTAMP'2017-09-30 12:11:21', 67),
-(2, 'phone bill overdue', 'Your bill for September was $340.25. Please pay immediately. Verizon, 123 Phone St., Wilimington, DE 12345', '', TIMESTAMP'2017-10-01 11:12:13', 78),
-(3, 'please donate', 'Hi, I'm running for Congress. If you agree with me on the issues, please contribute to my campaign', 'sam@house.gov', TIMESTAMP'2016-07-30 10:31:21', 45),
+(1, 'book club meeting', 'there will be a meeting this Friday at 6 pm, at the Barnes and Nobles cafe', 'daryl@my_work.com', 'tom@acme.com, harry@google.com, sally@espn.com', TIMESTAMP'2017-09-30 12:11:21', 67),
+(2, 'phone bill overdue', 'Your bill for September was $340.25. Please pay immediately. Verizon, 123 Phone St., Wilimington, DE 12345', 'daryl@my_work.com', '', TIMESTAMP'2017-10-01 11:12:13', 78),
+(3, 'please donate', 'Hi, I'm running for Congress. If you agree with me on the issues, please contribute to my campaign', 'daryl@my_work.com', 'sam@house.gov', TIMESTAMP'2016-07-30 10:31:21', 45),
 
 ```
 #### 7.2 You’ve just deleted one of the emails, so write a command to remove the row from the inbox table.
@@ -193,5 +196,5 @@ DELETE from emails WHERE id=1;
 ```
 #### 7.3 You’ve just sent an email to the wrong person. Using the handy undo feature from your email provider, you quickly correct this and send it to the correct recipient. Write a command to reflect this change in the database.
 ```
-
+UPDATE emails SET primary_recipient = 'fred@fredco.com';
 ```
