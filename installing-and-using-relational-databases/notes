@@ -1,4 +1,12 @@
-
+sudo service postgresql start
 
 
 sudo sudo -u postgres psql
+
+sudo sudo -u postgres createdb -U postgres -w library
+
+sudo sudo -u postgres psql -f location-of-file.sql inventory postgres
+
+sudo sudo -u postgres psql -f library-data.sql inventory postgres
+
+psql library postgres
