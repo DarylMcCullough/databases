@@ -9,3 +9,7 @@ sudo sudo -u postgres psql -f location-of-file.sql inventory postgres
 sudo sudo -u postgres psql -f library-data.sql inventory postgres
 
 psql library postgres
+
+sudo sudo -u postgres createdb -U postgres -w hogwarts
+
+COPY compensation FROM '/home/ubuntu/workspace/sql-aggregate-functions-and-grouping/hogwarts-compensation.csv' DELIMITER ',' CSV;
