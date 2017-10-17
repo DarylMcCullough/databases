@@ -98,7 +98,7 @@ the same.
 ## 7. Build an Employees table and a Shifts table with appropriate primary and foreign keys.
 
 ```
-CREATE TABLE employees (name VARCHAR(100), preferred_shift SMALLINT);
+CREATE TABLE employees (name VARCHAR(100), preferred_shift SMALLINT, second_choice_shift SMALLINT);
 
 CREATE TABLE shifts (shift_id SMALLINT, start TIME, end TIME);
 ```
@@ -107,7 +107,7 @@ CREATE TABLE shifts (shift_id SMALLINT, start TIME, end TIME);
 ### 7.1 List all employees and all shifts.
 
 ```
-SELECT * FROM employees FULL OUTER JOIN shifts;
+SELECT * FROM employees FULL OUTER JOIN shifts ON employees.preferred_shift = shift_id OR employees.second_choice_shift = shift_id;
 ```
 
 ### 7.2 Create a list of all possible schedules.
