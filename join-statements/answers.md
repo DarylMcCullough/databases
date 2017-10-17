@@ -181,8 +181,9 @@ SELECT Volunteers.*, Dogs.* FROM
 
 ```
 SELECT Patrons.name, Holds.rank FROM 
-    (Books INNER JOIN Holds ON Books.isbn = Holds.isbn WHERE Books.title = 'Harry Potter and the Sorcerer''s Stone')
+    Books INNER JOIN Holds ON Books.isbn = Holds.isbn 
     INNER JOIN Patrons ON Holds.user_id = Patrons.id
+    WHERE Books.title = 'Harry Potter and the Sorcerer''s Stone')
     ORDER BY Holds.rank;
 ```
 
@@ -210,5 +211,8 @@ SELECT Books.title, SUM(Transactions.checked_in_date - Transactions.checked_out_
 ```
 ### 10.5 List all of the library patrons. If they have one or more books checked out, correspond the books to the patrons.
 ```
-SELECT array_agg(Books.title)
+    SELECT Patrons.*, Books.* FROM
+        (Patrons LEFT OUTER JOIN Transactions ON Transactions.user_id = Patrons.id)
+        LEFT OUTER JOIN Books on Transactions.isbn = Books.isbn
+        WHERE Transactions.checked_in_date IS NULL;
 ```
