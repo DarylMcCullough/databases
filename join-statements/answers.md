@@ -57,9 +57,10 @@ band table to get information about all students who will go on the trip. Joinin
 information for students who are in both clubs.
 
 ### 3. Define primary key and foreign key. Give a real world example for each.
-In a table, a primary key is some column where the values are guaranteed not to repeat, so that
-the values can be used to look up a particular row. An example might be a table of customers, and
-each customer has his email address as his primary key.
+In a table, a primary key is one or more columns such that the combination of 
+values is guaranteed not to repeat, so that the values can be used to look up 
+a particular row. An example might be a table of customers, and each customer has
+his email address as his primary key.
 
 A foreign key is a primary key from one table that is used as a column of another table. For
 example, there might be a `customers` table, as described above, listing all the customers for
