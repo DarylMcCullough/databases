@@ -17,3 +17,11 @@ COPY compensation FROM '/home/ubuntu/workspace/sql-aggregate-functions-and-group
 sudo sudo -u postgres psql -f hotel.sql hotel postgres
 
 sudo sudo -u postgres psql -f enrollment.sql enrollment postgres
+
+sudo sudo -u postgres createdb -U postgres -w employees
+
+sudo sudo -u postgres psql -f employees.sql employees postgres
+
+sudo sudo -u postgres createdb -U postgres -w pets2
+
+sudo sudo -u postgres psql -f pets.sql pets2 postgres
