@@ -13,3 +13,7 @@ psql library postgres
 sudo sudo -u postgres createdb -U postgres -w hogwarts
 
 COPY compensation FROM '/home/ubuntu/workspace/sql-aggregate-functions-and-grouping/hogwarts-compensation.csv' DELIMITER ',' CSV;
+
+sudo sudo -u postgres psql -f hotel.sql hotel postgres
+
+sudo sudo -u postgres psql -f enrollment.sql enrollment postgres
